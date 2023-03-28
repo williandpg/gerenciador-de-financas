@@ -28,6 +28,8 @@ main {
 .registros {
     padding: 30px;
     margin: 0;
+    height: 500px;
+    overflow: scroll;
 }
 
 .registro {
@@ -47,9 +49,46 @@ main {
     top: 20px;
     right: 20px;
     background-color: transparent;
+    color: rgb(210, 235, 225);
+    border: 1px solid rgb(210, 235, 225);
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .registro button:first-of-type {
     right: 80px;
 
+}
+
+button:hover {
+    background-color: rgb(38, 38, 35);
+}
+
+.despesa .valor {
+    color: rgb(221, 126, 126);
+}
+
+.receita .valor {
+    color: rgb(145, 201, 62);
+}
+
+.despesa .valor::before {
+    content: "-R$ ";
+}
+
+.receita .valor::before {
+    content: "R$ ";
+}
+
+footer p {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+footer {
+    bottom: 0;
+    padding: 50px;
+    width: 100%;
+    position: absolute;
 }
