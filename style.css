@@ -1,12 +1,55 @@
-body {
-    font-family: sans-serif;
-    background-color: rgb(36, 39, 36);
-    color: white;
-    font-size: 16px;
-    text-align: center;
-}    
-
-.cabecalho {
-    background-color: rgb(2, 31, 2);
+* {
+    margin: 0;
+    padding: 0;
 }
 
+body {
+    font-family: sans-serif;
+    background-color: rgb(38, 38, 35);
+    color: rgb(210, 235, 225);
+    font-size: 16px;
+}    
+
+header h1 {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+header {
+    background-color: rgb(23, 90, 65);
+}
+
+main {
+    margin: 0 auto;
+    width: 600px;
+    padding: 50px 0;
+}
+
+.registros {
+    padding: 30px;
+    margin: 0;
+}
+
+.registro {
+    background-color: rgb(23, 90, 65);
+    margin: 15px 0;
+    border-radius: 15px;
+    position: relative;
+    padding: 25px;
+}
+
+.registro .valor , .registro .item {
+    display: block;
+}
+
+.registro button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+}
+
+.registro button:first-of-type {
+    right: 80px;
+
+}
