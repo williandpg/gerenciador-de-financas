@@ -1,94 +1,291 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: rgb(38, 38, 35);
+  --fg: rgb(210, 235, 225);
+  --card: rgb(23, 90, 65);
+  --card-2: rgba(23, 90, 65, 0.55);
+  --borda: rgba(210, 235, 225, 0.35);
+  --perigo: rgb(221, 126, 126);
+  --ok: rgb(145, 201, 62);
 }
 
 body {
-    font-family: sans-serif;
-    background-color: rgb(38, 38, 35);
-    color: rgb(210, 235, 225);
-    font-size: 16px;
-}    
-
-header h1 {
-    margin: 0 auto;
-    width: fit-content;
+  font-family: sans-serif;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-size: 16px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-header {
-    background-color: rgb(23, 90, 65);
+.container {
+  width: min(920px, calc(100% - 32px));
+  margin: 0 auto;
 }
 
-main {
-    margin: 0 auto;
-    width: 600px;
-    padding: 50px 0;
+.cabecalho {
+  background-color: var(--card);
+  padding: 18px 0;
+}
+
+.cabecalho h1 {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.conteudo {
+  flex: 1;
+  padding: 28px 0 36px;
+}
+
+.painel {
+  background: var(--card-2);
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.painel h2 {
+  margin-bottom: 12px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 1fr;
+  gap: 12px;
+  align-items: end;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.campo-largo {
+  grid-column: span 2;
+}
+
+label {
+  font-size: 0.9rem;
+  opacity: 0.95;
+}
+
+input, select {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--borda);
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+}
+
+input::placeholder {
+  color: rgba(210, 235, 225, 0.65);
+}
+
+.acoes {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  grid-column: 1 / -1;
+  padding-top: 6px;
+}
+
+.btn {
+  background-color: transparent;
+  color: var(--fg);
+  border: 1px solid var(--borda);
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgba(38, 38, 35, 0.6);
+}
+
+.btn-primario {
+  border-color: rgba(210, 235, 225, 0.75);
+}
+
+.btn-perigo {
+  border-color: rgba(221, 126, 126, 0.75);
+}
+
+.resumo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.card-resumo {
+  background: var(--card-2);
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.card-resumo .rotulo {
+  display: block;
+  opacity: 0.9;
+  margin-bottom: 6px;
+}
+
+.card-resumo.destaque {
+  background: var(--card);
 }
 
 .registros {
-    padding: 30px;
-    margin: 0;
-    height: 500px;
-    overflow: scroll;
+  margin-top: 18px;
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.registros-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filtros {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.input {
+  min-width: 180px;
+}
+
+.lista {
+  margin-top: 10px;
+  max-height: 420px;
+  overflow: auto;
+  padding-right: 6px;
 }
 
 .registro {
-    background-color: rgb(23, 90, 65);
-    margin: 15px 0;
-    border-radius: 15px;
-    position: relative;
-    padding: 25px;
+  background-color: var(--card);
+  margin: 12px 0;
+  border-radius: 14px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 120px 1fr 140px 140px;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.registro .valor , .registro .item {
-    display: block;
+.registro .data {
+  opacity: 0.95;
 }
 
-.registro button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: transparent;
-    color: rgb(210, 235, 225);
-    border: 1px solid rgb(210, 235, 225);
-    padding: 5px;
-    border-radius: 5px;
-    cursor: pointer;
+.registro .item {
+  word-break: break-word;
 }
 
-.registro button:first-of-type {
-    right: 80px;
-
+.registro .valor {
+  text-align: right;
+  font-weight: 700;
 }
 
-button:hover {
-    background-color: rgb(38, 38, 35);
+.registro.despesa .valor {
+  color: var(--perigo);
 }
 
-.despesa .valor {
-    color: rgb(221, 126, 126);
+.registro.receita .valor {
+  color: var(--ok);
 }
 
-.receita .valor {
-    color: rgb(145, 201, 62);
+.registro .botoes {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
 }
 
-.despesa .valor::before {
-    content: "-R$ ";
+.vazio {
+  padding: 14px 8px 4px;
+  opacity: 0.85;
 }
 
-.receita .valor::before {
-    content: "R$ ";
+.rodape {
+  padding: 22px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-footer p {
-    margin: 0 auto;
-    width: fit-content;
+.rodape p {
+  width: fit-content;
+  margin: 0 auto;
+  opacity: 0.9;
 }
 
-footer {
-    bottom: 0;
-    padding: 50px;
-    width: 100%;
-    position: absolute;
+/* Modal simples */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.modal.aberto {
+  display: flex;
+}
+
+.modal-conteudo {
+  width: min(720px, 100%);
+  background: var(--bg);
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.modal-conteudo h3 {
+  margin-bottom: 12px;
+}
+
+@media (max-width: 860px) {
+  .form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .campo-largo {
+    grid-column: span 2;
+  }
+
+  .resumo {
+    grid-template-columns: 1fr;
+  }
+
+  .registro {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .registro .valor {
+    text-align: left;
+  }
+
+  .registro .botoes {
+    justify-content: flex-start;
+  }
+
+  .input {
+    min-width: 160px;
+  }
 }
